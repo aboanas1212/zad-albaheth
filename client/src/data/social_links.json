@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "name": "قناة واتس آب",
+    "icon": "whatsapp",
+    "url": "https://whatsapp.com/channel/0029VaDVCOmL7UVUKklLSO0z"
+  },
+  {
+    "id": 2,
+    "name": "قناة تيلجرام",
+    "icon": "telegram",
+    "url": "https://t.me/zadalbaheth"
+  },
+  {
+    "id": 3,
+    "name": "مجموعة واتس آب للمشاركة",
+    "icon": "whatsapp",
+    "url": "https://chat.whatsapp.com/KvqdeQcQyVmFpbYLePgQQJ"
+  },
+  {
+    "id": 4,
+    "name": "مراسلة مباشرة على تيلجرام",
+    "icon": "telegram",
+    "url": "https://t.me/+967772081470"
+  }
+]
