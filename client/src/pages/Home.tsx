@@ -2,9 +2,12 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { BookOpen, Zap, Library, FileText, Mic, MessageCircle, ExternalLink, Search, TrendingUp, Users, Lightbulb, Sparkles } from "lucide-react";
 import { APP_TITLE } from "@/const";
-import researchTopicsData from "@/data/research_topics.json";
+	import researchTopicsData from "@/data/research_topics.json";
+	import { Link } from "wouter";
 
-export default function Home() {
+	export default function Home() {
+	  // Get the latest 20 research topics (assuming they are the last 20 added)
+	  const latestTopics = researchTopicsData.slice(-20).reverse();
   // Get category statistics
   const categoryStats = researchTopicsData.reduce((acc, item) => {
     const existing = acc.find(c => c.category === item.category);
@@ -90,8 +93,8 @@ export default function Home() {
 
       {/* Main Content */}
       <main className="flex-1">
-        {/* Hero Section */}
-        <section className="container mx-auto px-4 py-16 text-center">
+	        {/* Hero Section */}
+	        <section className="container mx-auto px-4 py-16 text-center">
           <div className="max-w-3xl mx-auto">
             <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6">
               زاد الباحث
@@ -112,11 +115,54 @@ export default function Home() {
                   الفوائد والأدوات
                 </Button>
               </a>
-            </div>
-          </div>
-        </section>
-
-        {/* Research Topics Section */}
+	            </div>
+	          </div>
+	        </section>
+	
+	        {/* Latest Topics Section */}
+	        <section id="latest-topics" className="bg-white py-16 border-t border-slate-200">
+	          <div className="container mx-auto px-4">
+	            <div className="text-center mb-12">
+	              <h3 className="text-3xl font-bold text-slate-900 mb-4">أحدث العناوين المقترحة في الإدارة</h3>
+	              <p className="text-slate-600 max-w-2xl mx-auto">
+	                أحدث 20 عنواناً مقترحاً في تخصص الإدارة والعلوم الإدارية، تصلح لرسائل الماجستير والدكتوراه.
+	              </p>
+	            </div>
+	            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+	              {latestTopics.map((topic) => (
+	                <Card key={topic.id} className="hover:shadow-lg transition-shadow">
+	                  <CardHeader className="pb-2">
+	                    <CardDescription className="text-xs text-blue-600 font-medium">
+	                      {topic.category} / {topic.subcategory}
+	                    </CardDescription>
+	                    <CardTitle className="text-lg text-slate-900 leading-normal">
+	                      {topic.title}
+	                    </CardTitle>
+	                  </CardHeader>
+	                  <CardContent className="pt-0">
+	                    <p className="text-sm text-slate-600 mb-4 line-clamp-2">{topic.description}</p>
+	                    <Link href={`/research-topics?id=${topic.id}`}>
+	                      <Button variant="link" className="p-0 h-auto text-blue-600 hover:text-blue-700 gap-1">
+	                        عرض التفاصيل
+	                        <ExternalLink className="w-3 h-3" />
+	                      </Button>
+	                    </Link>
+	                  </CardContent>
+	                </Card>
+	              ))}
+	            </div>
+	            <div className="text-center mt-10">
+	              <Link href="/research-topics">
+	                <Button size="lg" variant="outline" className="gap-2">
+	                  <Search className="w-5 h-5" />
+	                  استكشف جميع العناوين
+	                </Button>
+	              </Link>
+	            </div>
+	          </div>
+	        </section>
+	
+	        {/* Research Topics Section */}
         <section id="research-topics" className="bg-white py-16 border-t border-slate-200">
           <div className="container mx-auto px-4">
             <div className="text-center mb-12">
